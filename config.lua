@@ -1,6 +1,5 @@
 --[[
 lvim is the global options object
-
 Linters should be
 filled in as strings with either
 a global executable or a path to
@@ -103,6 +102,10 @@ vim.api.nvim_set_keymap(
   "<cmd>lua require('goto-preview').close_all_win()<CR>",
   { noremap = true, desc = "Close all previews" }
 )
+
+-- KeyMaps for Pounce motions
+vim.api.nvim_set_keymap( "n", "hp", ":Pounce<CR>", { silent = true, desc = "Pounce" })
+vim.api.nvim_set_keymap( "n", "hP", ":PounceRepeat<CR>", { silent = true, desc = "Pounce Repeat" })
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -346,6 +349,19 @@ lvim.plugins = {
         css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
       })
     end,
+  },
+  -- Pounce motios
+  {
+    "rlane/pounce.nvim",
+    config = function ()
+      require("pounce").setup({
+        accept_keys = "JFKDLSAHGNUVRBYTMICEOXWPQZ",
+        accept_best_key = "<enter>",
+        multi_window = true,
+        debug = false
+      })
+    end,
+    event = "BufEnter",
   },
   -- Testing setup
   { "haydenmeade/neotest-jest" },
