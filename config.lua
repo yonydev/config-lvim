@@ -50,6 +50,11 @@ lvim.keys.insert_mode["jj"] = "<Esc>"
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+
+lvim.builtin.which_key.mappings["s"] ={
+ g = { "<cmd>Telescope git_status<cr>", "Git Changed Files" },
+}
+
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
